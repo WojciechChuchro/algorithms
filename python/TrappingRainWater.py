@@ -13,6 +13,34 @@ def trap(height):
 
     return res
 
+def trap2(height):
+    l,r = 0,len(height)-1
+    max_l = 0
+    max_r = 0
+    water = 0
+    c = l
+    while l < r:
+        print(height[c])
+        area = min(max_l, max_r)
+        water += area - height[c] if area-height[c] > 0 else 0
 
-height = [0, 2, 0, 3, 1, 0, 1, 3, 2, 1]
-print(trap(height))
+        if height[l] > max_l:
+            max_l = height[l]
+        if height[r] > max_r:
+            max_r = height[r]
+
+        if height[l] > height[r]:
+            r-=1
+            c = r
+        else:
+            l+=1
+            c = l
+
+    return water
+
+
+
+
+
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
+print(trap2(height))
