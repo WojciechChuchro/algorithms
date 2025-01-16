@@ -14,9 +14,17 @@ def hasCycleHashSet(head: Optional[ListNode]) -> bool:
             return True
         exists[current] = current
     return False
+def hasCycle(head: Optional[ListNode]) -> bool:
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
 
 ll = ListNode(1)
 ll.next = ListNode(2)
 ll.next.next = ListNode(3)
 ll.next.next.next = ListNode(4)
-print(hasCycleHashSet(ll))
+print(hasCycle(ll))
