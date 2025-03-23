@@ -36,6 +36,7 @@ public class ReorderLinkedList {
         ListNode traverse = head;
 
         while (l <= r) {
+            System.out.print("siema ");
             traverse.val = list.get(l);
             l++;
 
