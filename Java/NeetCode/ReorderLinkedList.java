@@ -1,20 +1,51 @@
 package Java.NeetCode;
 
-class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-  }
 
+import org.junit.Test;
+
+import java.util.*;
+
+import static org.junit.Assert.assertTrue;
 
 public class ReorderLinkedList {
-    public static void main(String[] args) {
+    @Test
+    public void testReverse() {
+        ListNode ln = new ListNode(2);
+        ln.next = new ListNode(4);
+        ln.next.next = new ListNode(6);
+        ln.next.next.next = new ListNode(8);
 
+        ReorderLinkedList.reorderList(ln);
+
+        assertTrue("", ln.val == 2);
+        assertTrue("", ln.next.val == 8);
+        assertTrue("", ln.next.next.val == 4);
+        assertTrue("", ln.next.next.next.val == 6);
     }
+    public static void reorderList(ListNode head) {
+        List<Integer> list = new ArrayList<>();
 
-    public void reorderList(ListNode head) {
+        ListNode temp = head;
 
-    }
+        while(temp!=null) {
+            list.add(temp.val);
+            temp = temp.next;
+        }
+
+        int l = 0, r = list.size() - 1;
+        ListNode traverse = head;
+
+        while (l <= r) {
+            traverse.val = list.get(l);
+            l++;
+
+            if(l <= r) {
+                traverse = traverse.next;
+                traverse.val = list.get(r);
+                r--;
+            }
+
+            traverse = traverse.next;
+        }
 }
+    }
