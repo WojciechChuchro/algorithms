@@ -22,6 +22,38 @@ public class ReorderLinkedList {
         assertTrue("", ln.next.next.val == 4);
         assertTrue("", ln.next.next.next.val == 6);
     }
+    public void reorderList2(ListNode head) {
+        ListNode slow = head, fast = head.next;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode rightSide = null;
+        ListNode temp = slow.next;
+        slow.next = null;
+
+        while(temp != null) {
+            ListNode t = temp.next;
+
+            temp.next = rightSide;
+            rightSide = temp;
+            temp = t;
+        }
+
+        ListNode newHead = head;
+        while(rightSide != null) {
+            ListNode e = newHead.next;
+            ListNode d = rightSide.next;
+
+            newHead.next = rightSide;
+            rightSide.next = e;
+            newHead = e;
+            rightSide = d;
+        }
+
+    }
     public static void reorderList(ListNode head) {
         List<Integer> list = new ArrayList<>();
 
