@@ -19,4 +19,27 @@ class Solution {
         
       return majority;
     }
+        public int majorityElementBoyerMoore(int[] nums) {
+          int count = 0;
+          int res = 0;
+    
+          for(int n: nums) {
+            if(count == 0) {
+              res = n;
+            }
+    
+            if(res != n) {
+              count--;
+            }
+    
+            if(res == n) {
+              count++;
+            }
+    
+             
+          }
+            
+          return res;
+        }
+    
 }
